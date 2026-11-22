@@ -1,0 +1,4 @@
+ticket,truck,opened,closed,start_l,stop_l,event,fuel,rho,rho_unit,temp_c
+A01,FT-12,2026-11-22T01:50:00Z,2026-11-22T02:10:00Z,950,40,normal,JET-A1,800,kg/m3,15
+S01,FT-18,2026-11-22T01:10:00Z,2026-11-22T01:20:00Z,10,60,normal,JET-A1,800,kg/m3,15
+Q01,FT-23,2026-11-22T00:30:00Z,2026-11-22T00:50:00Z,30,50,normal,JET-A1,800,kg/m3,15

@@ -21,11 +21,16 @@ function bind(selector, submit) {
 }
 
 bind('#archive', async form => {
-  const files = Object.fromEntries(['tickets','receipts','stock'].map(id => [id,document.getElementById(id).value]));
+  const ids = ['tickets','receipts','stock'];
+  const files = Object.fromEntries(ids.map(id => [id,document.getElementById(id).value]));
   const values = Object.values(files);
   if (values.some(Boolean) && !values.every(Boolean)) throw new Error('请填全三份 CSV');
+  const handovers = document.getElementById('handovers')?.value;
+  const body = values.every(Boolean) ? files : {};
+  if (values.every(Boolean) && handovers) body.handovers = handovers;
+  if (handovers && !values.every(Boolean)) throw new Error('换表读数需随三份 CSV 一并提交');
   const sample = form.dataset.sample;
-  const ack = await post('/api/shifts', values.every(Boolean) ? files : {sample});
+  const ack = await post('/api/shifts', Object.keys(body).length ? body : {sample});
   location.assign('/ops/sign?' + new URLSearchParams({sample,batch:ack.batch}));
 });
 

@@ -9,6 +9,8 @@ REASONS = {
     'TEMPERATURE':'油温超出模型范围', 'FUEL':'未配置该油种', 'NO_RECEIPT':'缺少签收回执',
     'SIGN_TRUCK':'计量票与回执车号不一致', 'NO_METER':'签收缺少可计发放票', 'SIGN_DIFF':'签收差超过允许误差',
     'STOCK_ANCHORS':'缺少唯一的期初或期末库存', 'NO_BATCH':'没有此交班归档', 'NOT_SIGNED':'证据单尚未签发',
+    'HANDOVER_MISSING':'跨表票缺少换表交接读数', 'HANDOVER_CONFLICT':'换表交接记录冲突或票内多条交接',
+    'HANDOVER_RANGE':'换表前后读数与票据不一致', 'HANDOVER_HOLD':'换表交接待核，库存暂不合计',
 }
 
 

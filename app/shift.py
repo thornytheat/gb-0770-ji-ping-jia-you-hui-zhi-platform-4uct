@@ -11,7 +11,8 @@ def compute(files, through='balance', catalog=None):
     if through=='intake':
         return stage
     catalog = catalog if catalog is not None else fleet()[0]
-    stage['versions'] = select_versions(stage['intake']['sheets']['tickets']['rows'],catalog['ranges'])
+    handovers = stage['intake']['handovers']
+    stage['versions'] = select_versions(stage['intake']['sheets']['tickets']['rows'],catalog['ranges'],handovers)
     if through=='versions':
         return stage
     stage['readings'] = rebuild(stage['versions']['rows'])

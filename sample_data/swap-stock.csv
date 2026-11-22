@@ -1,0 +1,7 @@
+truck,movement,kind,kg
+FT-12,O12,opening,300
+FT-12,C12,closing,260
+FT-18,O18,opening,140
+FT-18,C18,closing,100
+FT-23,O23,opening,90
+FT-23,C23,closing,74

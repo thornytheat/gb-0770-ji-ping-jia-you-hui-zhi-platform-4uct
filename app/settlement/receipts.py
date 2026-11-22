@@ -30,7 +30,9 @@ def line_items(weights, sheet):
                          'receipt_lines':[signed['line']] if signed else conflicts.get(ticket,[]),
                          'document':signed['data']['document'] if signed else None,
                          'meter_g':standard['mass_g'] if standard else None,
-                         'allowance_g':standard['allowance_g'] if standard else None,'variance_g':variance})
+                         'allowance_g':standard['allowance_g'] if standard else None,'variance_g':variance,
+                         'fault':row['fault'],'basis':row.get('basis'),'handover':row.get('handover'),
+                         'handover_l':row.get('handover_l'),'handover_crossing':row.get('handover_crossing')})
     unmatched = [dict(detail('NO_METER'),ticket=key,truck=row['data']['truck'],line=row['line'],
                       signed_g=row['data']['signed_g'],document=row['data']['document']) for key,row in receipts.items()]
     return compared,unmatched

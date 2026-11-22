@@ -15,7 +15,8 @@ def replay(book, inputs):
     report = compute(inputs,catalog=catalog)
     setup = {'rules':RULESET,'input_sha256':{name:digest(data) for name,data in inputs.items()},
              'fleet_sha256':reference,'parameters':{'reference_temp_c':15,'thermal_coefficient':TEMPERATURE_COEFFICIENT,
-                                                   'mass_unit':'g','shift':'one_bundle'}}
+                                                   'mass_unit':'g','shift':'one_bundle',
+                                                   'meter_handover':'crossing_full_scale'}}
     batch = lock(setup)
     manifest = dict(setup,batch=batch,archived_at=datetime.now(timezone.utc).isoformat(),
                     elapsed_ms=round((perf_counter()-begin)*1000),totals=report['balance']['totals'])

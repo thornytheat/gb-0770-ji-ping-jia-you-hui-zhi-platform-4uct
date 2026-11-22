@@ -4,7 +4,7 @@ import io
 from app.diagnostics import RampError
 
 
-def rows_from(raw, required):
+def decode(raw):
     try:
         text = raw.decode('utf-8-sig')
     except UnicodeDecodeError:
@@ -16,10 +16,17 @@ def rows_from(raw, required):
         raise RampError('EMPTY_FILE')
     if not text.strip():
         raise RampError('BLANK_FILE')
+    return text
+
+
+def rows_from(raw, required, optional=()):
+    """逐行给出表头与原件行。分段按表头全等判断；可选列只放行不加必需。"""
+    text = decode(raw)
     reader = csv.reader(io.StringIO(text,newline=''),strict=True)
     try:
         header = next(reader)
-        if sorted(header)!=sorted(required):
+        if not set(required) <= set(header) or not set(header) <= set(required) | set(optional) \
+                or len(set(header)) != len(header):
             raise RampError('HEADER')
         line = reader.line_num+1
         for row in reader:
